@@ -1,0 +1,89 @@
+syntax = "proto3";
+
+option csharp_namespace = "RentACareGRPC";
+
+import "google/protobuf/timestamp.proto";
+package reservationprotoservice;
+
+service ReservationProto{
+    rpc CreateReservation(CreateReservationRequest) returns (CreateReservationRespons);
+    rpc ReadAllReservation(ReadAllReservationRequest) returns (ReadAllReservationResponse);
+    rpc ReadReservationById(ReadReservationByIdRequest) returns (ReadReservationByIdRespons);
+}
+//------------------CreateReservation-------------------------
+message CreateReservationRequest{
+   google.protobuf.Timestamp start_date = 1;
+    google.protobuf.Timestamp end_date = 2;
+   double total_price = 3;
+    int32 CarId = 4;
+    CarsPROTOo Cars = 5;
+    int32 CustomerId = 6;
+    CustomersPROTOo Customers = 7;
+}
+message CreateReservationRespons{
+    int32 Id = 1;
+}
+//-----------------ReadReservationByIdRequest------------------
+message ReadReservationByIdRequest{
+    int32 Id = 1;
+}
+message ReadReservationByIdRespons{
+    google.protobuf.Timestamp start_date = 1;
+    google.protobuf.Timestamp end_date = 2;
+    double total_price = 3;
+    int32 CarId = 4;
+    CarsPROTOo Cars = 5;
+    int32 CustomerId = 6;
+    CustomersPROTOo Customers = 7;
+}
+//-----------------ReadAllReservation--------------------------
+message ReadAllReservationRequest{}
+message ReadAllReservationResponse{
+    repeated ReadReservationByIdRespons Reservat_ion = 1;
+}
+//-------------------------Class-------------------------------
+message CustomersPROTOo{
+    int32 Id = 1;
+    string FirstName = 2;
+    string LastName = 3;
+    string Email = 4;
+    string Password = 5;
+    int32 NrLetenjoftimit = 6;
+    string Phone = 7;
+    int32 AdressId = 8;
+    AdressPROTOo AdressPROTO = 9;
+    int32 GenderId = 10;
+    GenderPROTOo GenderPROTO = 11;
+    int32 RoleId = 12;
+    RolePROTOo RolePROTO = 13;
+}
+message AdressPROTOo {
+    int32 Id = 1;
+    string City = 2;
+    string StreetAddress = 3;
+    int32 ZipCode = 4;
+}
+
+message GenderPROTOo {
+    int32 Id = 1;
+    string GenderName = 2;
+}
+
+message RolePROTOo {
+    int32 Id = 1;
+    string Name = 2;
+    int32 PermissionId = 3;
+    PermissionPROTOo PermissionPROTO = 4;
+}
+
+message PermissionPROTOo {
+    int32 Id = 1;
+    string PermissionName = 2;
+}
+message CarsPROTOo{
+    string Brend = 1;
+    string Model = 2;
+    string Year = 3;
+    string Color = 4;
+    double PriceForDay = 5;
+}

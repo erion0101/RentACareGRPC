@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+option csharp_namespace = "RentACareGRPC";
+
+package authservice;
+
+service AuthLoginServices{
+	rpc Login(AuthLoginRequest) returns (AuthLoginRespons);
+}
+message AuthLoginRequest{
+	string email = 1;
+	string password = 2;
+}
+message AuthLoginRespons{
+	string Token = 1;
+}

@@ -1,0 +1,49 @@
+syntax = "proto3";
+
+option csharp_namespace = "RentACareGRPC";
+
+package carsprotoservice;
+
+service CarsProtoService{
+	rpc ReadAllCars(ReadAllCarsRequest) returns (ReadAllCarsRespons);
+    rpc ReadByIdCars(ReadByIdCarsRequest) returns (ReadByIdCarsRespons);
+    rpc CreateCars(CreateCarsRequest) returns (CreateCarsRespons);
+
+}
+//--------------------------ToReadAllCars-------------------------
+message ReadAllCarsRequest{}
+message ReadAllCarsRespons{
+    repeated  ReadByIdCarsRespons cars_proto = 1;
+}
+//-------------------------ToReadByIdCars-------------------------
+message ReadByIdCarsRequest{
+    int32 Id = 1;
+}
+message ReadByIdCarsRespons{
+    string Brend = 1;
+    string Model = 2;
+    string Year = 3;
+    string Color = 4;
+    double PriceForDay = 5;
+}
+//-------------------------ToAddCars-------------------------------
+
+message CreateCarsRequest{
+    string Brend = 1;
+    string Model = 2;
+    string Year = 3;
+    string Color = 4;
+    double PriceForDay = 5;
+}
+message CreateCarsRespons{
+    int32 Id = 1;
+}
+
+//===============================Class==============================
+message CarsPROTO{
+    string Brend = 1;
+    string Model = 2;
+    string Year = 3;
+    string Color = 4;
+    double PriceForDay = 5;
+}

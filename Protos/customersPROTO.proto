@@ -1,0 +1,133 @@
+syntax = "proto3";
+
+option csharp_namespace = "RentACareGRPC";
+
+package customersProto;
+
+service CustomersProto {
+    rpc FindCustomersByEmail(FindCustomersByEmailRequest) returns (CustomersForEmailRespons);
+    rpc GetRoleNameById(GetCustomerIdRequest) returns (CustomersByRoleIdRespons);
+    rpc GetAllCustomers(GetAllCustomerRequest) returns (GetAllCustomerRespons);
+    rpc CreateCustomer(CreateCustomerRequest) returns (CreateCustomerResponse);
+    rpc GetCustomerById(GetCustomerByIdRequest) returns (GetCustomerByIdResponse);
+    rpc DeltetCustomers(DeleteCustomersRequest) returns (DeleteCusomersRespons);
+    rpc UpdateCustomers(UpdateCustomersRequest) returns (UpdateCustomersRespons);
+}
+//------------------------FindCustomersByEmail---------------------------
+message FindCustomersByEmailRequest {
+    string Email = 1;
+}
+message CustomersForEmailRespons{
+    int32 Id = 1;
+    string FirstName = 2;
+    string LastName = 3;
+    string Email = 4;
+    string Password = 5;
+    int32 NrLetenjoftimit = 6;
+    string Phone = 7;
+    int32 AdressId = 8;
+    AdressPROTO AdressPROTO = 9;
+    int32 GenderId = 10;
+    GenderPROTO GenderPROTO = 11;
+    int32 RoleId = 12;
+    RolePROTO RolePROTO = 13;
+}
+//------------------------GetRoleNameById---------------------------------
+message GetCustomerIdRequest{
+    int32 Id = 1;
+}
+message CustomersByRoleIdRespons{
+    int32 Id = 1;
+    string Name = 2;
+    int32 PermissionId = 3;
+    PermissionPROTO PermissionPROTO = 4;
+}
+//------------------------GetAllCustomers---------------------------------
+message GetAllCustomerRequest{}
+message GetAllCustomerRespons{
+      repeated GetCustomerByIdResponse  Custu_mers = 1;
+}
+//------------------------RegisterCustomers---------------------------------
+message CreateCustomerRequest{
+    string FirstName = 2;
+    string LastName = 3;
+    string Email = 4;
+    string Password = 5;
+    int32 NrLetenjoftimit = 6;
+    string Phone = 7;
+    int32 AdressId = 8;
+    AdressPROTO AdressPROTO = 9;
+    int32 GenderId = 10;
+    GenderPROTO GenderPROTO = 11;
+    int32 RoleId = 12;
+    RolePROTO RolePROTO = 13;
+}
+message CreateCustomerResponse{
+    int32 Id = 1;
+}
+//------------------------GetCustomerById---------------------------------
+message GetCustomerByIdRequest {
+    int32 CustomersId = 1;
+}
+message GetCustomerByIdResponse{
+    int32 Id = 1;
+    string FirstName = 2;
+    string LastName = 3;
+    string Email = 4;
+    string Password = 5;
+    int32 NrLetenjoftimit = 6;
+    string Phone = 7;
+    int32 AdressId = 8;
+    AdressPROTO AdressPROTO = 9;
+    int32 GenderId = 10;
+    GenderPROTO GenderPROTO = 11;
+    int32 RoleId = 12;
+    RolePROTO RolePROTO = 13;
+}
+//------------------------Delete--------------------------------------------
+message DeleteCustomersRequest{
+    int32 Id = 1;
+}
+message DeleteCusomersRespons{
+    int32 Id = 1;
+}
+//------------------------Update--------------------------------------------
+message UpdateCustomersRequest{
+    int32 Id = 1;
+    string FirstName = 2;
+    string LastName = 3;
+    string Email = 4;
+    string Password = 5;
+    int32 NrLetenjoftimit = 6;
+    string Phone = 7;
+    int32 AdressId = 8;
+    int32 GenderId = 9;
+    int32 RoleId = 10;
+}
+message UpdateCustomersRespons{
+    int32 Id = 1;
+}
+//------------------------ClassToGetMorInfo---------------------------------
+message AdressPROTO {
+    int32 Id = 1;
+    string City = 2;
+    string StreetAddress = 3;
+    int32 ZipCode = 4;
+}
+
+message GenderPROTO {
+    int32 Id = 1;
+    string GenderName = 2;
+}
+
+message RolePROTO {
+    int32 Id = 1;
+    string Name = 2;
+    int32 PermissionId = 3;
+    PermissionPROTO PermissionPROTO = 4;
+}
+
+message PermissionPROTO {
+    int32 Id = 1;
+    string PermissionName = 2;
+}
